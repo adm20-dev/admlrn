@@ -4,7 +4,7 @@ from flask import (
         Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
 
-from wekzeug.security import check_password_hash, generate_password_hash
+from werkzeug.security import check_password_hash, generate_password_hash
 
 from flaskr.db import get_db
 
@@ -39,7 +39,7 @@ def register():
 
     return render_template('auth/register.html')
 
-@bp.route('/login', method=('GET', 'POST'))
+@bp.route('/login', methods=('GET', 'POST'))
 def login():
     if request.method == 'POST':
         username = request.form['username']
@@ -60,7 +60,7 @@ def login():
             session['user_id'] = user['id']
             return redirect(url_for('index'))
         
-        flash(error))
+        flash(error)
 
     return render_template('auth/login.html')
 @bp.before_app_request
