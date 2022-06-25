@@ -26,7 +26,7 @@ def test_login_required(client, path):
 
 # the logged in user must be the author of the post to access
 # update and delete, otherwise return 403 Forbidden
-def test_author_required(app, client, path):
+def test_author_required(app, client, auth):
     # change the post author to another user
     with app.app_context():
         db = get_db()
@@ -47,7 +47,7 @@ def test_author_required(app, client, path):
     '/2/delete',
 ))
 def test_exists_required(client, auth, path):
-    auth.log()
+    auth.login()
     assert client.post(path).status_code == 404
 
 # create and update views should render and return a 200 OK status
@@ -65,7 +65,7 @@ def test_create(client, auth, app):
 def test_update(client, auth, app):
     auth.login()
     assert client.get('/1/update').status_code == 200
-    client.post('/1/update', data={'title': 'update', 'body': ''})
+    client.post('/1/update', data={'title': 'updated', 'body': ''})
 
     with app.app_context():
         db = get_db()
