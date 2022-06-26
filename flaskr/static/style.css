@@ -12,12 +12,12 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: serif;
-  color: #377ba8;
+  color: #000000;
   margin: 1rem 0;
 }
 
 a {
-  color: #377ba8;
+  color: #000000;
 }
 
 hr {
@@ -26,7 +26,7 @@ hr {
 }
 
 nav {
-  background: lightgray;
+  background: #ff6600;
   display: flex;
   align-items: center;
   padding: 0 0.5rem;
